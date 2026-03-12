@@ -115,7 +115,7 @@
     #skills h2 { color: #F1EDE6; }
     #skills .section-label { color: #C8902A; }
     .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
-    .skill-card { background: #131D2C; padding: 2.25rem; transition: background 0.2s; }
+    .skill-card { background: #131D2C; padding: 2rem; transition: background 0.2s; }
     .skill-card:hover { background: #182538; }
     .skill-icon { font-size: 1.4rem; margin-bottom: 0.9rem; }
     .skill-card h3 { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: #EDE8E0; margin-bottom: 0.85rem; }
@@ -126,11 +126,11 @@
     /* PROJECTS */
     #projects { background: var(--cream); }
     .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-    .proj-card { border: 1px solid var(--border); border-radius: 4px; padding: 2.25rem; background: var(--white); transition: all 0.22s; }
+    .proj-card { border: 1px solid var(--border); border-radius: 4px; padding: 2rem; background: var(--white); transition: all 0.22s; }
     .proj-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(26,86,219,0.07); }
     .proj-num { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; color: var(--gold); margin-bottom: 0.9rem; }
     .proj-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--ink); margin-bottom: 0.6rem; }
-    .proj-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.4rem; }
+    .proj-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.1rem; }
     .proj-impact { font-family: var(--mono); font-size: 0.65rem; color: var(--blue); letter-spacing: 0.06em; padding-top: 1rem; border-top: 1px solid var(--border); }
 
     /* EDUCATION */
@@ -153,9 +153,10 @@
     #contact .section-label { color: var(--gold); }
     #contact h2 { font-family: var(--serif); font-size: clamp(2.5rem,5vw,4rem); color: #F1EDE6; margin-bottom: 1rem; }
     #contact p { font-size: 1rem; color: #7A8FA6; margin-bottom: 3rem; }
-    .contact-links { display: flex; justify-content: center; gap: 0.85rem; flex-wrap: wrap; }
-    .contact-link { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.65rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 3px; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: #9DAFC0; text-decoration: none; transition: all 0.2s; }
-    .contact-link:hover { border-color: rgba(184,125,42,0.6); color: #C8902A; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; min-width: 164px; padding: 1rem 1.5rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: #D7E0EA; text-decoration: none; transition: all 0.2s; background: rgba(255,255,255,0.03); }
+    .contact-link svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .contact-link:hover { border-color: rgba(184,125,42,0.6); color: #F1EDE6; transform: translateY(-2px); background: rgba(184,125,42,0.12); }
 
     /* FOOTER */
     footer { background: #080D14; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 5vw; display: flex; justify-content: space-between; align-items: center; }
@@ -169,7 +170,9 @@
     /* RESPONSIVE */
     @media (max-width: 960px) {
       #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { height: 65vw; max-height: 460px; }
+      .hero-right { height: auto; max-height: none; }
+      .hero-img { height: 56vw; max-height: 360px; }
+      .hero-badge { position: static; margin: 1rem; max-width: none; }
       .hero-left { padding: 3.5rem 5vw; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-photo-wrap { position: static; }
@@ -180,6 +183,18 @@
       .edu-card { grid-template-columns: 1fr; gap: 0.4rem; }
       nav { padding: 1rem 5vw; }
       .nav-links { display: none; }
+    }
+    @media (max-width: 720px) {
+      .hero-desc, .about-content p { font-size: 0.96rem; line-height: 1.75; }
+      .stat-row { grid-template-columns: 1fr; }
+      .lead-card { display: grid; grid-template-columns: 116px 1fr; }
+      .lead-photo { height: 100%; min-height: 170px; }
+      .lead-body { padding: 1.15rem; }
+      .skill-card { padding: 1.35rem; }
+      .skill-list li:nth-child(n+4) { display: none; }
+      .proj-card { padding: 1.35rem; }
+      .capitol-banner { display: none; }
+      .contact-link { width: 100%; max-width: 260px; }
     }
   </style>
 </head>
@@ -231,20 +246,10 @@
       <div class="section-label">// About</div>
       <h2>Policy fluency.<br/><em>Technical leadership.</em></h2>
       <p>
-        I began my public service career as a <strong>Jesse Unruh Assembly Fellow</strong> — a
-        prestigious California legislative fellowship — and have spent the past 14 years advancing
-        through increasingly complex roles in the California State Legislature, from Legislative Aide
-        to <strong>Principal Technology Consultant</strong> in the Assembly Rules Committee.
+        I began my public service career as a <strong>Jesse Unruh Assembly Fellow</strong> and have spent the past 14 years in the California State Legislature, growing from Legislative Aide to <strong>Principal Technology Consultant</strong> in the Assembly Rules Committee.
       </p>
       <p>
-        I've built a career at the intersection of <strong>policy and technology</strong>: reading and
-        referring over 5,000 bills, advising Members on legislative strategy, and today leading
-        Assembly-wide modernization projects that integrate artificial intelligence, digitize
-        paper-driven systems, and redesign public-facing infrastructure to improve transparency
-        and access for millions of Californians.
-      </p>
-      <p>
-        I am currently pursuing my <strong>Master of Public Administration</strong> while continuing to lead civic technology and modernization work in California state government.
+        My work bridges <strong>policy and technology</strong>, from reading and referring 5,000+ bills to leading AI, digitization, and public access projects across state government.
       </p>
       <div class="stat-row reveal">
         <div class="stat-box">
@@ -266,7 +271,6 @@
         <span class="pill">Civic Tech</span>
         <span class="pill">Policy Analysis</span>
         <span class="pill">Minority Civic Engagement</span>
-        <span class="pill">HKS Fellow Candidate</span>
       </div>
     </div>
   </div>
@@ -285,10 +289,9 @@
       <div class="exp-body">
         <h3>Principal Technology Consultant</h3>
         <ul>
-          <li>Lead Assembly-wide modernization efforts, integrating artificial intelligence and digitizing legacy paper-driven processes.</li>
-          <li>Manage large-scale multi-million-dollar IT and policy projects including Assembly website redesigns, cybersecurity initiatives, and transparency-focused tools.</li>
-          <li>Provide technical and strategic guidance to senior leaders, Legislators, and staff to align innovation with institutional priorities.</li>
-          <li>Serve as a bridge between legislative policy and emerging technologies, ensuring solutions meet both operational and democratic needs.</li>
+          <li>Lead Assembly-wide modernization, including AI adoption and workflow digitization.</li>
+          <li>Manage major IT initiatives, including website redesigns and public-facing tools.</li>
+          <li>Advise senior leaders on technology strategy and rollout.</li>
         </ul>
         <div class="tags">
           <span class="tag">AI Integration</span><span class="tag">Digital Transformation</span>
@@ -305,9 +308,9 @@
       <div class="exp-body">
         <h3>Senior Public Policy Consultant</h3>
         <ul>
-          <li>Conducted policy research and drafted analyses across diverse issue areas, shaping decision-making for Legislators.</li>
-          <li>Oversaw bill referral and committee processes, advancing legislation through floor debates and amendments.</li>
-          <li>Collaborated with Legislators, advocates, state agencies, and community stakeholders to develop practical, bipartisan solutions.</li>
+          <li>Conducted policy research and drafted analyses for Legislators.</li>
+          <li>Oversaw bill referrals and committee process through hearings and floor sessions.</li>
+          <li>Worked with legislators, agencies, and advocates on practical policy solutions.</li>
         </ul>
         <div class="tags">
           <span class="tag">Policy Research</span><span class="tag">Bill Referral</span>
@@ -323,9 +326,9 @@
       <div class="exp-body">
         <h3>Associate Public Policy Consultant</h3>
         <ul>
-          <li>Conducted bill research and policy analysis to support senior consultants in evaluating proposed legislation.</li>
-          <li>Assisted in drafting bill referral recommendations and committee analyses, ensuring accurate alignment with Assembly rules.</li>
-          <li>Prepared legislative summaries, talking points, and briefing materials for committee hearings and floor sessions.</li>
+          <li>Conducted bill research and policy analysis.</li>
+          <li>Helped draft referral recommendations and committee analyses.</li>
+          <li>Prepared summaries and briefing materials for hearings and floor sessions.</li>
         </ul>
         <div class="tags">
           <span class="tag">Bill Analysis</span><span class="tag">Committee Support</span>
@@ -341,9 +344,9 @@
       <div class="exp-body">
         <h3>Legislative Aide</h3>
         <ul>
-          <li>Drafted bill summaries and vote recommendations; prepared Assembly Member for floor sessions, committees, and staffed legislative hearings.</li>
-          <li>Coordinated constituent services and engaged community organizations to strengthen outreach.</li>
-          <li>Managed Assembly Member's social media and public communications.</li>
+          <li>Drafted bill summaries, vote recommendations, and floor materials.</li>
+          <li>Coordinated constituent services and community outreach.</li>
+          <li>Managed social media and public communications.</li>
         </ul>
         <div class="tags">
           <span class="tag">Constituent Services</span><span class="tag">Legislative Hearings</span>
@@ -385,7 +388,7 @@
         <div class="lead-period">2015 – Present</div>
         <h3>Volunteer Trainer</h3>
         <div class="lead-org">National Association of Social Workers</div>
-        <p>Delivered training sessions for thousands of social workers across California on the legislative process and effective advocacy — empowering frontline service providers to engage meaningfully in the policymaking process.</p>
+        <p>Delivered training for thousands of social workers across California on the legislative process and effective advocacy.</p>
       </div>
     </div>
   </div>
@@ -401,9 +404,8 @@
       <h3>Legislative &amp; Policy</h3>
       <ul class="skill-list">
         <li>Bill Analysis &amp; Referral (5,000+ bills)</li>
-        <li>Committee Process &amp; Floor Debate</li>
-        <li>Bipartisan Stakeholder Collaboration</li>
-        <li>Constituent Engagement</li>
+        <li>Committee Process &amp; Floor Strategy</li>
+        <li>Bipartisan Collaboration</li>
         <li>Policy Research &amp; Drafting</li>
       </ul>
     </div>
@@ -412,9 +414,8 @@
       <h3>Technology &amp; Innovation</h3>
       <ul class="skill-list">
         <li>AI Integration &amp; Automation</li>
-        <li>Multi-Million Dollar IT Project Management</li>
+        <li>IT Project Management</li>
         <li>Website Redesign &amp; UX</li>
-        <li>Cybersecurity Initiatives</li>
         <li>Digital Government Modernization</li>
       </ul>
     </div>
@@ -426,7 +427,6 @@
         <li>Cross-Agency Collaboration</li>
         <li>Minority Civic Engagement</li>
         <li>Transparency &amp; Open Data</li>
-        <li>Public Trust &amp; Democratic Access</li>
       </ul>
     </div>
   </div>
@@ -440,25 +440,25 @@
     <div class="proj-card reveal">
       <div class="proj-num">01 — DIGITAL MODERNIZATION</div>
       <h3>California State Assembly Website Redesign</h3>
-      <p>Led a comprehensive redesign of the Assembly's public-facing website, guiding a team of technologists, policy staff, and accessibility advocates to rebuild around user needs, plain language, and open data.</p>
+      <p>Led the redesign of the Assembly's public website with a focus on usability, accessibility, and open data.</p>
       <div class="proj-impact">↳ Millions of Californians now use this site to track legislation &amp; contact representatives</div>
     </div>
     <div class="proj-card reveal">
       <div class="proj-num">02 — AI &amp; AUTOMATION</div>
       <h3>Assembly-Wide AI Integration</h3>
-      <p>Spearheaded integration of artificial intelligence tools across the California State Assembly, digitizing paper-driven legacy processes and streamlining operations for hundreds of legislative offices.</p>
+      <p>Led AI adoption and workflow digitization across the California State Assembly.</p>
       <div class="proj-impact">↳ Streamlined operations across hundreds of offices statewide</div>
     </div>
     <div class="proj-card reveal">
       <div class="proj-num">03 — TRANSPARENCY LEGISLATION</div>
       <h3>Higher Education Board Meeting Transparency</h3>
-      <p>Helped advance legislation requiring California's public universities and community colleges to record and post board meetings online — opening critical decisions about tuition, faculty pay, and program closures to public view.</p>
+      <p>Helped advance legislation requiring California public colleges and universities to post board meetings online.</p>
       <div class="proj-impact">↳ Empowered students, faculty, and families to hold decision-makers accountable</div>
     </div>
     <div class="proj-card reveal">
       <div class="proj-num">04 — CIVIC ENGAGEMENT</div>
       <h3>League of Minority Voters — CA Launch</h3>
-      <p>Co-organized the launch of the inaugural California chapter of the League of Minority Voters, including panels, advocacy campaigns, and a formal strategic partnership with the California Secretary of State.</p>
+      <p>Co-organized the California launch of the League of Minority Voters, including public programming and state partnerships.</p>
       <div class="proj-impact">↳ Partnership with CA Secretary of State Dr. Shirley Weber</div>
     </div>
   </div>
@@ -474,7 +474,7 @@
       <div class="edu-body">
         <h3>Master of Public Administration</h3>
         <div class="edu-school">California State University, Sacramento</div>
-        <p>Graduate study focused on public administration, leadership, and the modernization of government systems, complementing ongoing work in civic technology and institutional change.</p>
+        <p>Graduate study in leadership, public administration, and government modernization.</p>
       </div>
     </div>
     <div class="edu-card reveal">
@@ -482,7 +482,7 @@
       <div class="edu-body">
         <h3>Jesse Unruh Assembly Fellowship — 8 M.P.A. Units Completed</h3>
         <div class="edu-school">California State University, Sacramento</div>
-        <p>Prestigious California legislative fellowship providing a foundational understanding of policymaking and the role of institutions in shaping public opportunity.</p>
+        <p>Legislative fellowship that launched my career in public service.</p>
       </div>
     </div>
     <div class="edu-card reveal">
@@ -490,7 +490,7 @@
       <div class="edu-body">
         <h3>B.A. Political Science</h3>
         <div class="edu-school">University of California, Santa Barbara</div>
-        <p>Includes an immersive year of study abroad at the National University of Singapore — broadening international perspective on governance and public administration across 15+ countries visited.</p>
+        <p>Included a year of study abroad at the National University of Singapore.</p>
       </div>
     </div>
   </div>
@@ -506,19 +506,19 @@
   <div class="contact-inner">
     <div class="section-label">// Contact</div>
     <h2 class="reveal">Let's connect.</h2>
-    <p class="reveal">Working on civic technology, digital government, or public policy? I'd love to be in touch.</p>
+    <p class="reveal">Working on civic tech, digital government, or public policy? Let’s connect.</p>
     <div class="contact-links reveal">
-      <a href="mailto:itsmukhtarali@gmail.com" class="contact-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      <a href="mailto:itsmukhtarali@gmail.com" class="contact-link" aria-label="Email Mukhtar Ali">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
         Email
       </a>
-      <a href="https://www.linkedin.com/in/mukhtarali/" target="_blank" class="contact-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        linkedin.com/in/mukhtarali
+      <a href="https://www.linkedin.com/in/mukhtarali/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="Mukhtar Ali on LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
       </a>
       <a href="https://itsmukhtar.com" class="contact-link">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        itsmukhtar.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Website
       </a>
     </div>
   </div>
